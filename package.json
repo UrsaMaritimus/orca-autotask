@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^3.3.0",
-    "defender-relay-client": "^1.1.0",
+    "defender-relay-client": "^1.11.1",
     "dotenv": "^8.2.0",
     "ethers": "5.0.3",
     "is-odd": "^3.0.1",

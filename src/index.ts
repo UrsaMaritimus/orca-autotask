@@ -1,6 +1,9 @@
 // Import dependencies available in the autotask environment
-import { RelayerParams } from 'defender-relay-client/lib/relayer';
-import { DefenderRelayProvider } from 'defender-relay-client/lib/ethers';
+import { RelayerParams, Relayer } from 'defender-relay-client/lib/relayer';
+import {
+  DefenderRelayProvider,
+  DefenderRelaySigner,
+} from 'defender-relay-client/lib/ethers';
 import { ethers } from 'ethers';
 
 const OrcaAdder = '0x59A24B6E1bDDc15b3aD844B0DfcD86421363F62c';
@@ -621,14 +624,31 @@ const OrcaAdderABI = [
 // Entrypoint for the Autotask
 export async function handler(credentials: RelayerParams) {
   const provider = new DefenderRelayProvider(credentials);
+  const signer = new DefenderRelaySigner(credentials, provider, {
+    speed: 'safeLow',
+  });
+
+  const relayer = new Relayer(credentials);
 
   const OrcaAdderContract = new ethers.Contract(
     OrcaAdder,
     OrcaAdderABI,
-    provider.getSigner()
+    signer
   );
 
-  await OrcaAdderContract.allocate();
+  //await OrcaAdderContract.allocate();
+  const estimation = await OrcaAdderContract.estimateGas.allocate();
+  const gasPrice = await provider.getGasPrice();
+  console.log(estimation, gasPrice);
+  const txRes = await relayer.sendTransaction({
+    to: OrcaAdder,
+    data: '0xabaa9916',
+    gasLimit: estimation.toHexString(),
+    gasPrice: gasPrice.toHexString(),
+  });
+
+  console.log(txRes);
+  return txRes.hash;
 }
 
 // Sample typescript type definitions

@@ -1272,13 +1272,24 @@ deepmerge@^4.2.2:
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
   integrity sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==
 
-defender-relay-client@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/defender-relay-client/-/defender-relay-client-1.1.0.tgz#ac654936e6a4635caa0401f852b7438689366e2c"
-  integrity sha512-5xaLJvvQlk7ZH3PBNdVamIl4E9CzWYqgPaCv9iS65o2Y1+2EhKhKKZ7r0iTv8F/j1YP68iyvZyz9KC/3la9r+A==
+defender-base-client@1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/defender-base-client/-/defender-base-client-1.10.0.tgz#d85af9e84f57d6201e7741e44e59d5a3ff9c2b75"
+  integrity sha512-PvjJj4pWug/PVZWVi6jrdXGpykgtifGdomV1ePgZSj7cjK2mSbS0P3GUUeIzCA/d5HSV5/L6reZkI1KavnSdpA==
   dependencies:
     amazon-cognito-identity-js "^4.3.3"
     axios "^0.19.2"
+    lodash "^4.17.19"
+    node-fetch "^2.6.0"
+
+defender-relay-client@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/defender-relay-client/-/defender-relay-client-1.11.1.tgz#0ae73c1ca972f7fd082ab0c3a37301cf96a32b77"
+  integrity sha512-gz2CA45m5xho3p/nbKCVC/j07kbM/8hQajpEr+dl2YJbWRSFuxePkkd3TFKl0bya1MDZccHW8lbCQs47PQ+18w==
+  dependencies:
+    amazon-cognito-identity-js "^4.3.3"
+    axios "^0.19.2"
+    defender-base-client "1.10.0"
     lodash "^4.17.19"
     node-fetch "^2.6.0"
 
