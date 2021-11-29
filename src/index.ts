@@ -643,7 +643,7 @@ export async function handler(credentials: RelayerParams) {
   const txRes = await relayer.sendTransaction({
     to: OrcaAdder,
     data: '0xabaa9916',
-    gasLimit: estimation.toHexString(),
+    gasLimit: estimation.add(10000).toHexString(),
     gasPrice: gasPrice.toHexString(),
   });
 
